@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="~{fragments.html :: head}">
+</head>
+<body class="bg-light">
+<div th:replace="~{fragments.html :: main-nav}"></div>
+
+    <div class="container">
+        <div class="py-5 text-center" th:if="${error}">
+            <p class="lead">스터디올래 이메일 확인</p>
+            <div class="alert alert-danger" role="alert">
+                <p>이메일이 확인되지 않았습니다.</p>
+            </div>
+         </div>
+        <div class="py-5 text-center" th:if="${error == null}">
+            <p class="lead">스터디올래 이메일 확인</p>
+            <h2>
+                이메일이 확인되었습니다. <span th:text="${numberOfUser}">10</span>번째 회원,
+                <span th:text="${nickname}">전용본</span>님 가입을 환영합니다.
+            </h2>
+        </div>
+    </div>
+
+    <div th:replace="~{fragments.html :: footer}"></div>
+</body>
+</html>
