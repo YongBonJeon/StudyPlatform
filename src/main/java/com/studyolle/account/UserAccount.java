@@ -7,6 +7,7 @@ import org.springframework.security.core.userdetails.User;
 
 import java.util.List;
 
+// 유저가 사용하는 계정 정보와 스프링 세큐리티가 사용하는 유저 정보를 연결해주는 클래스
 @Getter
 public class UserAccount extends User {
 
