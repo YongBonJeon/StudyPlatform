@@ -1,5 +1,7 @@
 package com.studyolle.account;
 
+import com.studyolle.Main.EmailMessage;
+import com.studyolle.Main.EmailService;
 import com.studyolle.domain.Account;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -13,6 +15,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.transaction.annotation.Transactional;
 
+import static org.mockito.BDDMockito.then;
+import static org.mockito.ArgumentMatchers.any;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.security.test.web.servlet.response.SecurityMockMvcResultMatchers.authenticated;
@@ -28,8 +32,9 @@ class AccountControllerTest {
     @Autowired private MockMvc mockMvc;
     @Autowired private AccountRepository accountRepository;
 
-    /*@MockBean
-    JavaMailSender javaMailSender;*/
+    @MockBean
+    EmailService emailService;
+
 
     @DisplayName("이메일 인증 토큰 확인 - 입력값 오류")
     @Test
@@ -105,5 +110,6 @@ class AccountControllerTest {
         assertNotEquals(account.getPassword(), "12345678");
         assertNotNull(account.getEmailCheckToken());
         assertTrue(accountRepository.existsByEmail("bon6143@gmail.com"));
+        then(emailService).should().sendEmail(any(EmailMessage.class));
     }
 }

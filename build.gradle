@@ -35,6 +35,8 @@ dependencies {
 
 	implementation 'org.modelmapper:modelmapper:2.3.6'
 
+	annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
+
     compileOnly 'org.projectlombok:lombok'
 	testCompileOnly 'org.projectlombok:lombok'
 	runtimeOnly 'com.h2database:h2'

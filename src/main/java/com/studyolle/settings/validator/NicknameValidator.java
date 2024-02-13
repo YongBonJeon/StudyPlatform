@@ -11,7 +11,6 @@ import org.springframework.validation.Validator;
 public class NicknameValidator implements Validator {
 
     private final AccountRepository accountRepository;
-    private
     @Override
     public boolean supports(Class<?> clazz) {
         return NicknameForm.class.isAssignableFrom(clazz);
