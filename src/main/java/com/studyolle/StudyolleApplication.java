@@ -27,7 +27,7 @@ public class StudyolleApplication {
 	}
 
 	private final ZoneRepository zoneRepository;
-	@EventListener(ApplicationReadyEvent.class)
+	/*@EventListener(ApplicationReadyEvent.class)
 	public void init() throws IOException {
 		Resource resource = new ClassPathResource("zones_kr.csv");
 		List<Zone> zoneList = Files.readAllLines(resource.getFile().toPath(), StandardCharsets.UTF_8).stream()
@@ -36,6 +36,6 @@ public class StudyolleApplication {
 					return Zone.builder().city(split[0]).localNameOfCity(split[1]).province(split[2]).build();
 				}).collect(Collectors.toList());
 		zoneRepository.saveAll(zoneList);
-	}
+	}*/
 
 }

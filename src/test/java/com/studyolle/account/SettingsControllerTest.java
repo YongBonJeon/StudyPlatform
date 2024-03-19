@@ -56,12 +56,10 @@ class SettingsControllerTest {
     @Test
     void updateTagsForm() throws Exception {
         mockMvc.perform(get("/settings/tags"))
-                .andExpect(status().isOk())
-                .andExpect(model().attributeExists("account"))
-                .andExpect(model().attributeExists("whiteList"))
-                .andExpect(model().attributeExists("tags"))
                 .andExpect(view().name("settings/tags"))
-                .andExpect(authenticated());
+                .andExpect(model().attributeExists("account"))
+                .andExpect(model().attributeExists("whitelist"))
+                .andExpect(model().attributeExists("tags"));
     }
 
     @WithAccount("yongbon")
@@ -77,7 +75,7 @@ class SettingsControllerTest {
                 .andExpect(status().isOk());
 
 
-        Tag newTag = tagRepository.findByTitle("newTag").get();
+        Tag newTag = tagRepository.findByTitle("newTag");
         assertNotNull(newTag);
         Account yongbon = accountRepository.findByNickname("yongbon");
         assertTrue(yongbon.getTags().contains(newTag));

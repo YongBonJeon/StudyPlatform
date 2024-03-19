@@ -1,4 +1,4 @@
-package com.studyolle.Main;
+package com.studyolle.mail;
 
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
@@ -14,11 +14,11 @@ import org.springframework.stereotype.Component;
 @Component
 @RequiredArgsConstructor
 public class HtmlEmailService implements EmailService{
-
     private final JavaMailSender javaMailSender;
 
     @Override
     public void sendEmail(EmailMessage emailMessage) {
+        // 자바에서 제공하는 MimeMessage를 이용하여 메일을 보낼 수 있다.
         MimeMessage mimeMessage = javaMailSender.createMimeMessage();
 
         try {
@@ -30,6 +30,7 @@ public class HtmlEmailService implements EmailService{
             log.info("sent email: {}", emailMessage.getMessage());
         } catch (MessagingException e) {
             log.error("failed to send an email", e);
+            throw new RuntimeException(e);
         }
     }
 }

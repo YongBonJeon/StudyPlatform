@@ -21,7 +21,10 @@ import javax.sql.DataSource;
 @RequiredArgsConstructor
 public class SecurityConfig {
 
+    // UserDetailsService 인터페이스를 구현한 AccountService 객체를 주입받음
     private final UserDetailsService userDetailsService;
+
+    // Spring Boot에서 등록한 HikariCP 데이터 소스를 주입받음
     private final DataSource dataSource;
 
     // 정적 요소 무시
@@ -33,12 +36,11 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         // 해당 링크들을 제외한 모든 요청은 인증을 받아야 한다.
-        http
-                .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/", "/login", "/sign-up", "check-mail", "/check-email-token",
+        http.authorizeHttpRequests(authorize -> authorize
+                .requestMatchers("/", "/login", "/sign-up", "check-mail", "/check-email-token",
                                 "/email-login", "/check-email-login", "/login-link", "/images/**",
                                 "/css/**", "/js/**", "/node_modules/**", "/favicon.ico").permitAll()
-                        .anyRequest().authenticated());
+                .anyRequest().authenticated());
 
         // 로그인 페이지 설정
         http.formLogin(formLogin -> formLogin

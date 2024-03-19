@@ -1,4 +1,4 @@
-package com.studyolle.Main;
+package com.studyolle.mail;
 
 import lombok.Builder;
 import lombok.Data;

@@ -83,13 +83,8 @@ public class Account {
         return this.emailCheckTokenGeneratedAt.isBefore(LocalDateTime.now().minusHours(1));
     }
 
-    @Override
-    public String toString() {
-        return "Account{" +
-                "id=" + id +
-                ", email='" + email + '\'' +
-                ", nickname='" + nickname + '\'' +
-                ", password='" + password + '\'' +
-                '}';
+
+    public boolean isManagerOf(Study study) {
+        return study.getManagers().contains(this);
     }
 }

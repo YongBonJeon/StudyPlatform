@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 @Data
 @Component
-@ConfigurationProperties("app")
+@ConfigurationProperties("app") // properties 파일에서 app으로 시작하는 설정을 읽어옴
 public class AppProperties {
     private String host;
 }
